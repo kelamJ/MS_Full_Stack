@@ -1,4 +1,4 @@
-DROP DATABASE IF EXIST `exercice`;
+DROP DATABASE IF EXISTS `exercice`;
 
 CREATE DATABASE `exercice`;
 
