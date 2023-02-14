@@ -33,7 +33,23 @@ CREATE TABLE Panier(
     panier_produit          CHAR(6) NOT NULL,
     panier_commande         INT NOT NULL,
     PRIMARY KEY (panier_produit, panier_commande),
-    FOREIGN KEY (panier_commande ) REFERENCES Commande (com_id)
+    FOREIGN KEY (panier_commande) REFERENCES Commande (com_id)
+);
+
+CREATE TABLE Fournisseur(
+    fou_id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fou_nom     VARCHAR(50) NOT NULL,
+    fou_adresse VARCHAR(100) NOT NULL,
+    fou_cp      CHAR(5) NOT NULL,
+    fou_ville   VARCHAR(50) NOT NULL,
+    fou_tel     VARCHAR(10),
+    fou_mail    VARCHAR(50),
+    Type        BIT(1)
+);
+
+CREATE TABLE Rubrique(
+    rub_id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    rub_libelle VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Produit(
@@ -47,23 +63,9 @@ CREATE TABLE Produit(
     prod_stkale         INT NOT NULL,
     prod_fourni         INT NOT NULL,
     prod_rubrique       INT NOT NULL,
-    FOREIGN KEY (prod_code) REFERENCES Panier (panier_produit)
+    FOREIGN KEY (prod_fourni) REFERENCES Fournisseur (fou_id),
+    FOREIGN KEY (prod_rubrique) REFERENCES Rubrique (rub_id)
 );
 
-CREATE TABLE Fournisseur(
-    fou_id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    fou_nom     VARCHAR(50) NOT NULL,
-    fou_adresse VARCHAR(100) NOT NULL,
-    fou_cp      CHAR(5) NOT NULL,
-    fou_ville   VARCHAR(50) NOT NULL,
-    fou_tel     VARCHAR(10),
-    fou_mail    VARCHAR(50),
-    Type        BIT(1),
-    FOREIGN KEY (fou_id) REFERENCES Produit (prod_fourni)
-);
-
-CREATE TABLE Rubrique(
-    rub_id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    rub_libelle VARCHAR(50) NOT NULL,
-    FOREIGN KEY (rub_id) REFERENCES Produit (prod_rubrique)
-);
+ALTER TABLE Panier
+ADD FOREIGN KEY (panier_produit) REFERENCES Produit (prod_code);
