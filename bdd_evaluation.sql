@@ -71,9 +71,28 @@ ALTER TABLE Panier
 ADD FOREIGN KEY (panier_produit) REFERENCES Produit (prod_code);
 
 CREATE UNIQUE INDEX  nom_client_index
-ON Client (cli_nom)
+ON Client (cli_nom);
 
 CREATE UNIQUE INDEX  date_com_index
-ON Commande (com_date_com)
+ON Commande (com_date_com);
 
-SHOW INDEX from *Client* 
+INSERT INTO Client (cli_nom, cli_prenom, cli_adresse, cli_cp, cli_ville)
+VALUES
+('Boudet', 'Abeau', '92, avenue Toussaint', 80600, 'DOULLENS'),
+('Gaubert', 'Laurent', '1, rue Julie Maurice', 54460, 'LIVERDUN'),
+('Jacquard', 'Jean-Charles', '83, avenue Gérard Payet', 59299, 'BOESCHEPE'),
+('Vannier', 'Raymond', '51, rue Corinne Lacombe', 70200, 'ANDORNAY');
+('Malet', 'Abeau', '6, boulevard Thibault Hebert', 02160, 'MEURIVAL'),
+('Bossuet', 'Abeau', '6, impasse Lambert', 26170, 'PROPIAC'),
+('Ménétries', 'Abeau', '1, chemin Paris', 47470, 'CAUZAC'),
+('Baugé', 'Abeau', '53, chemin de Grondin', 67580, 'FORSTHEIM'),
+('Cormier', 'Abeau', '88, rue Lelievre', 63320, 'VERRIERES'),
+('Crépin', 'Abeau', '37, place Hamel', 78930, 'GUERVILLE');
+
+INSERT INTO Fournisseur (fou_nom, fou_adresse, fou_cp, fou_ville)
+VALUES
+('Valeo','95, avenue Toussaint Chien', 80600, 'DOULLENS'),
+('HyperU','11, rue Julien Maurices', 54460),
+('Lamoule','8, avenue Gérard Petin', 59299),
+('TapisVolant','55, rue Corinne Labombe', 70200);
+('MosaiquePizza','66, boulevard Stephane Duchet', 02160),
