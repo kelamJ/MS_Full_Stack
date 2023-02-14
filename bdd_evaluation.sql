@@ -27,7 +27,7 @@ CREATE TABLE Commande(
 );
 
 CREATE TABLE Panier(
-    comp_qte_produit        INT NOT NULL, 
+    comp_qte_produit        INT NOT NULL,   
     comp_prix_vente_par     FLOAT NOT NULL,
     comp_prix_vente_pro     FLOAT NOT NULL,
     panier_produit          CHAR(6) NOT NULL,
@@ -81,7 +81,7 @@ VALUES
 ('Boudet', 'Abeau', '92, avenue Toussaint', 80600, 'DOULLENS'),
 ('Gaubert', 'Laurent', '1, rue Julie Maurice', 54460, 'LIVERDUN'),
 ('Jacquard', 'Jean-Charles', '83, avenue Gérard Payet', 59299, 'BOESCHEPE'),
-('Vannier', 'Raymond', '51, rue Corinne Lacombe', 70200, 'ANDORNAY');
+('Vannier', 'Raymond', '51, rue Corinne Lacombe', 70200, 'ANDORNAY'),
 ('Malet', 'Abeau', '6, boulevard Thibault Hebert', 02160, 'MEURIVAL'),
 ('Bossuet', 'Abeau', '6, impasse Lambert', 26170, 'PROPIAC'),
 ('Ménétries', 'Abeau', '1, chemin Paris', 47470, 'CAUZAC'),
@@ -91,8 +91,32 @@ VALUES
 
 INSERT INTO Fournisseur (fou_nom, fou_adresse, fou_cp, fou_ville)
 VALUES
-('Valeo','95, avenue Toussaint Chien', 80600, 'DOULLENS'),
-('HyperU','11, rue Julien Maurices', 54460),
-('Lamoule','8, avenue Gérard Petin', 59299),
-('TapisVolant','55, rue Corinne Labombe', 70200);
-('MosaiquePizza','66, boulevard Stephane Duchet', 02160),
+('Valeo','95, avenue Toussaint Chien', 26170, 'PROPIAC'),
+('HyperU','11, rue Julien Maurices', 47470, 'CAUZAC'),
+('Lamoule','8, avenue Gérard Petin', 67580, 'FORSTHEIM'),
+('TapisVolant','55, rue Corinne Labombe', 63320, 'VERRIERES'),
+('MosaiquePizza','66, boulevard Stephane Duchet', 78930, 'GUERVILLE');
+
+
+INSERT INTO Produit (prod_code, prod_libelle, prod_prix, prod_stkphy, prod_stkale)
+VALUES
+('AB8756', 'Chips', 5, 500, 250),
+('AB8654', 'Lait', 2, 350, 150),
+('AB8759', 'Farine', 1, 350, 250),
+('AB8757', 'Fromage', 6, 350, 150),
+('AB8753', 'Pomme', 2, 550, 300),
+('AB8751', 'Carte', 5, 50, 25),
+('AB8745', 'Chien', 150, 30, 15),
+('AB8796', 'Banane', 1, 500, 250),
+('AB8778', 'Chat', 500, 50, 25),
+('AC8736', 'Peluche', 35, 50, 25),
+('AB8766', 'Ortie', 3, 5000, 2500),
+('AD8788', 'Sanglier', 66, 50, 25),
+('AB8733', 'Peau', 8, 500, 250),
+('AB8744', 'Miroir', 22, 50, 25),
+('AB8755', 'Artichaut', 3, 500, 250),
+('AB8854', 'Miel', 5, 5000, 2500),
+('AB8164', 'Fourchette', 4,  500, 205),
+('CB8349', 'Couteau', 4, 500, 205),
+('AB8789', 'Asiette', 6, 500, 205),
+('AB8436', 'Kiwi', 1, 500, 205);
