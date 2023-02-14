@@ -69,3 +69,11 @@ CREATE TABLE Produit(
 
 ALTER TABLE Panier
 ADD FOREIGN KEY (panier_produit) REFERENCES Produit (prod_code);
+
+CREATE UNIQUE INDEX  nom_client_index
+ON Client (cli_nom)
+
+CREATE UNIQUE INDEX  date_com_index
+ON Commande (com_date_com)
+
+SHOW INDEX from *Client* 
