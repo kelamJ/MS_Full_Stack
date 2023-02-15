@@ -55,14 +55,14 @@ CREATE TABLE Rubrique(
 CREATE TABLE Produit(
     prod_code           CHAR(6) NOT NULL PRIMARY KEY,
     prod_libelle        VARCHAR(100) NOT NULL,
-    prod_description    VARCHAR(250) NOT NULL,
-    prod_photo          VARCHAR(250) NOT NULL,
+    prod_description    VARCHAR(250),
+    prod_photo          VARCHAR(250),
     Affichage           BIT(1),
     prod_prix           INT NOT NULL,
     prod_stkphy         INT NOT NULL,
     prod_stkale         INT NOT NULL,
-    prod_fourni         INT NOT NULL,
-    prod_rubrique       INT NOT NULL,
+    prod_fourni         INT,
+    prod_rubrique       INT,
     FOREIGN KEY (prod_fourni) REFERENCES Fournisseur (fou_id),
     FOREIGN KEY (prod_rubrique) REFERENCES Rubrique (rub_id)
 );
@@ -70,10 +70,10 @@ CREATE TABLE Produit(
 ALTER TABLE Panier
 ADD FOREIGN KEY (panier_produit) REFERENCES Produit (prod_code);
 
-CREATE UNIQUE INDEX  nom_client_index
+CREATE INDEX  nom_client_index
 ON Client (cli_nom);
 
-CREATE UNIQUE INDEX  date_com_index
+CREATE INDEX  date_com_index
 ON Commande (com_date_com);
 
 INSERT INTO Client (cli_nom, cli_prenom, cli_adresse, cli_cp, cli_ville)
@@ -120,3 +120,60 @@ VALUES
 ('CB8349', 'Couteau', 4, 500, 205),
 ('AB8789', 'Asiette', 6, 500, 205),
 ('AB8436', 'Kiwi', 1, 500, 205);
+
+
+INSERT INTO Commande (com_date_com ,com_date_liv, com_client)
+VALUES
+('2022-06-17', '2022-06-24',1),
+('2022-06-18', '2022-06-23',2),
+('2022-10-11', '2022-10-18',3),
+('2022-06-19', '2022-06-25',4),
+('2022-09-22', '2022-09-28',5),
+('2022-09-22', '2022-09-26',6),
+('2022-06-18', '2022-06-28',7),
+('2022-06-17', '2022-06-27',8),
+('2022-06-12', '2022-06-22',9),
+('2022-05-13', '2022-05-23',10);
+
+INSERT INTO Panier (comp_qte_produit ,comp_prix_vente_par ,comp_prix_vente_pro, panier_produit, panier_commande )
+VALUES
+(75, '55', '25','AB8654',1),
+( 55, '55', '25','AB8745',2),
+( 57, '55', '25','AC8736',3),
+( 65, '55', '25','AB8755',4),
+(59, '55', '25','AB8164',5),
+( 54, '55', '25','AB8164',6),
+(56, '55', '25','CB8349',7),
+( 52, '55', '25','AB8789',8),
+(45, '55', '25','AB8436',9),
+(51, '55', '25','AB8778',10);
+
+CREATE USER 'gestionnaire'@'%' IDENTIFIED BY '0000';
+GRANT SELECT  
+ON evaluationBDD.Produit
+TO 'gestionnaire'@'%';
+GRANT SELECT  
+ON evaluationBDD.Commande 
+TO 'gestionnaire'@'%';
+GRANT SELECT  
+ON evaluationBDD.Client
+TO 'gestionnaire'@'%';
+GRANT SELECT  
+ON evaluationBDD.Panier
+TO 'gestionnaire'@'%';
+FLUSH PRIVILEGES;
+
+CREATE USER 'approvisionneur'@'%' IDENTIFIED BY '0000';
+GRANT SELECT, INSERT
+ON evaluationBDD.Produit
+TO 'approvisionneur'@'%';
+GRANT SELECT
+ON evaluationBDD.Fournisseur
+TO 'approvisionneur'@'%';
+FLUSH PRIVILEGES;
+
+CREATE USER 'administrateur'@'%' IDENTIFIED BY '0000';
+GRANT ALL PRIVILEGES  
+ON evaluationBDD.*       
+TO 'administrateur'@'%';  
+FLUSH PRIVILEGES;    
