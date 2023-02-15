@@ -148,6 +148,10 @@ VALUES
 (45, '55', '25','AB8436',9),
 (51, '55', '25','AB8778',10);
 
+DROP USER 'gestionnaire'@'%'; 
+DROP USER 'approvisionneur'@'%'; 
+DROP USER 'administrateur'@'%'; 
+
 CREATE USER 'gestionnaire'@'%' IDENTIFIED BY '0000';
 GRANT SELECT  
 ON evaluationBDD.Produit
